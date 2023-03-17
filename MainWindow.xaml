@@ -1,0 +1,137 @@
+﻿<Window x:Class="RP_to_Eur.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RP_to_Eur"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Title="RP Calculator" Height="400" Width="720">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF002850" Offset="1"/>
+                <GradientStop Color="#FF56B0FF" Offset="0"/>
+                <GradientStop Color="#FF004489" Offset="0.889"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#0073a4"
+              Grid.ColumnSpan="5"
+              MouseDown="Grid_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Source="/icon.ico"></Image>
+
+            <Button x:Name="MinimierenButton"
+                    Click="Click_Minimieren"
+                    Grid.Column="8"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Width="25"
+        Height="25"
+        Background="Transparent"
+        BorderThickness="0"
+        Command="{Binding Path=MinimizeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+        ToolTip="Minimieren">
+                <Grid>
+                    <Rectangle Width="12" Height="2" Margin="0,9,0,0" Fill="White" />
+                </Grid>
+            </Button>
+            <Button x:Name="MaximierenButton"
+        Grid.Column="9"
+        Click="Click_Maximieren"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Width="25"
+        Height="25"
+        Background="Transparent"
+        BorderThickness="0"
+        ToolTip="Maximieren">
+                <Grid>
+                    <Rectangle Width="8" Height="8" Margin="0,4,4,0" Stroke="White" StrokeThickness="2" />
+                    <Rectangle Width="8" Height="8" Margin="4,0,0,4" Stroke="White" StrokeThickness="2" />
+                    <Rectangle Width="8" Height="8" Margin="0,4,4,0" Fill="White" />
+                    <Rectangle Width="8" Height="8" Margin="4,0,0,4" Fill="White" />
+                </Grid>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" Value="Maximized">
+                                <Setter Property="ToolTip" Value="Fenstermodus" />
+                                <Setter Property="Background" Value="Black"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+            <Button x:Name="CloseButton"
+                    Click="Click_Schliessen"
+                    Grid.Column="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="25"
+                    Height="22"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding Path=CloseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                    ToolTip="Schließen">
+                <Grid>
+                    <Line X1="0" Y1="0" X2="20" Y2="20" Stroke="White" StrokeThickness="2"/>
+                    <Line X1="20" Y1="0" X2="0" Y2="20" Stroke="White" StrokeThickness="2"/>
+                </Grid>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Content="Preis des Artikels in RP:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBox x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
+                <TextBlock Text="Quantity:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <StackPanel Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button x:Name="IncrementButton" Style="{StaticResource StandardButtonStyle}" Content="+" Click="IncrementButton_Click" Height="15" Width="30" Margin="0,0,10,0"/>
+                    <Button x:Name="MinusButton" Style="{StaticResource StandardButtonStyle}" Content="-" Margin="0 0 10 0" Height="15" Width="30" Click="MinusButton_Click"/>
+                </StackPanel>
+                <TextBox x:Name="ItemQuantityTextBox" Width="30" VerticalAlignment="Center" Text="1" Margin="5" IsReadOnly="False"/>
+                <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Berechnen" Click="CalculateButton_Click"/>
+            </StackPanel>
+            <ListView x:Name="ResultsListView" Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernListView}" ItemsSource="{Binding BundleResults}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="RP-Bundle-Größe" DisplayMemberBinding="{Binding BundleSize}" Width="125"/>
+                        <GridViewColumn Header="Kosten in € bei der Bundlegröße" DisplayMemberBinding="{Binding EuroCost}" Width="auto"/>
+                        <GridViewColumn Header="Bundles zum Kauf" DisplayMemberBinding="{Binding NumBundles}" Width="125"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
