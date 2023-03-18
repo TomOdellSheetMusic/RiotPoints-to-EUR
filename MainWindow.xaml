@@ -115,12 +115,12 @@
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Label Content="Preis des Artikels in RP:" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <TextBox x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
-                <TextBlock Text="Quantity:" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <StackPanel Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button x:Name="IncrementButton" Style="{StaticResource StandardButtonStyle}" Content="+" Click="IncrementButton_Click" Height="15" Width="30" Margin="0,0,10,0"/>
-                    <Button x:Name="MinusButton" Style="{StaticResource StandardButtonStyle}" Content="-" Margin="0 0 10 0" Height="15" Width="30" Click="MinusButton_Click"/>
+                <TextBlock Text="Amount:" VerticalAlignment="Center"/>
+                <TextBox Name="AmountTextBox" Width="60" Height="30"/>
+                <StackPanel Margin="0 0 10 0">
+                    <Button Name="PlusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="+"/>
+                    <Button Name="MinusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="-"/>
                 </StackPanel>
-                <TextBox x:Name="ItemQuantityTextBox" Width="30" VerticalAlignment="Center" Text="1" Margin="5" IsReadOnly="False"/>
                 <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Berechnen" Click="CalculateButton_Click"/>
             </StackPanel>
             <ListView x:Name="ResultsListView" Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernListView}" ItemsSource="{Binding BundleResults}">
@@ -133,5 +133,6 @@
                 </ListView.View>
             </ListView>
         </Grid>
+        <Label Grid.Row="2" Grid.Column="2" x:Name="debug"/>
     </Grid>
 </Window>
