@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RP_to_Eur
@@ -59,23 +60,31 @@ namespace RP_to_Eur
             }
         }
 
-        private void MinusButton_Click(object sender, RoutedEventArgs e)
+        private void ItemQuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (itemCount > 1)
+            if (int.TryParse(ItemQuantityTextBox.Text, out int itemCount))
             {
-                itemCount--;
-                ItemQuantityTextBox.Text = itemCount.ToString();
-                CalculateButton_Click(sender, e);
+                this.itemCount = itemCount;
+                CalculateButton_Click(sender, e); // recalculate the results
             }
         }
 
         private void IncrementButton_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(ItemQuantityTextBox.Text, out int itemCount))
+            if (int.TryParse(ItemQuantityTextBox.Text, out itemCount))
             {
                 itemCount++;
                 ItemQuantityTextBox.Text = itemCount.ToString();
                 CalculateButton_Click(sender, e); // recalculate the results
+            }
+        }
+        private void MinusButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (itemCount > 0)
+            {
+                itemCount--;
+                ItemQuantityTextBox.Text = itemCount.ToString();
+                CalculateButton_Click(sender, e);
             }
         }
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
