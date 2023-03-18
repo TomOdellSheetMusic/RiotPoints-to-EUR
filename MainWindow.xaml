@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Title="RP Calculator" Height="400" Width="720">
+        Title="RP Calculator" Height="400" Width="800">
+
     <Grid>
+        
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF002850" Offset="1"/>
@@ -17,11 +19,9 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -107,31 +107,31 @@
                 </Grid>
             </Button>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="2">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Label Content="Preis des Artikels in RP:" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <TextBox x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
+                <TextBox VerticalContentAlignment="Center" x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
                 <TextBlock Text="Amount:" VerticalAlignment="Center"/>
-                <TextBox Name="AmountTextBox" Width="60" Height="30"/>
+                <TextBox VerticalContentAlignment="Center" Name="AmountTextBox" Width="60" Height="30"/>
                 <StackPanel Margin="0 0 10 0">
                     <Button Name="PlusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="+"/>
                     <Button Name="MinusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="-"/>
                 </StackPanel>
                 <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Berechnen" Click="CalculateButton_Click"/>
             </StackPanel>
-            <ListView x:Name="ResultsListView" Grid.Row="2" Grid.Column="0" Style="{StaticResource ModernListView}" ItemsSource="{Binding BundleResults}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="RP-Bundle-Größe" DisplayMemberBinding="{Binding BundleSize}" Width="125"/>
-                        <GridViewColumn Header="Kosten in € bei der Bundlegröße" DisplayMemberBinding="{Binding EuroCost}" Width="auto"/>
-                        <GridViewColumn Header="Bundles zum Kauf" DisplayMemberBinding="{Binding NumBundles}" Width="125"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="RP Bundle Preis" Binding="{Binding PriceBundles}"/>
+                    <DataGridTextColumn Header="RP Bundle Größe" Binding="{Binding BundleSize}" Width="125"/>
+                    <DataGridTextColumn Header="Kosten in € bei der Bundlegröße" Binding="{Binding EuroCost}" Width="*"/>
+                    <DataGridTextColumn Header="Bundles zum Kauf" Binding="{Binding NumBundles}" Width="125"/>
+                    <DataGridTextColumn Header="Betrag zu zahlen" Binding="{Binding GesGeld}" Width="125"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
         <Label Grid.Row="2" Grid.Column="2" x:Name="debug"/>
     </Grid>

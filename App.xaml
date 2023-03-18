@@ -6,11 +6,48 @@
     <Application.Resources>
         <Style x:Key="ModernListView" TargetType="{x:Type ListView}">
             <Setter Property="Background" Value="#212121" />
-            <Setter Property="Foreground" Value="#FFF" />
+            <Setter Property="Foreground" Value="#FF002353" />
             <Setter Property="Margin" Value="5" />
             <Setter Property="Padding" Value="5" />
         </Style>
-
+        <Style x:Key="ModernDataGrid" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#212121" />
+            <Setter Property="Foreground" Value="#FFF" />
+            <Setter Property="RowBackground" Value="#212121" />
+            <Setter Property="GridLinesVisibility" Value="None" />
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#212121" />
+                        <Setter Property="Foreground" Value="#FFF" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="6" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="BorderBrush" Value="#454545" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Foreground" Value="#FFF" />
+                        <Setter Property="BorderThickness" Value="0,0,1,1" />
+                        <Setter Property="BorderBrush" Value="#454545" />
+                        <Setter Property="Padding" Value="6" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#0073a4" />
+                                <Setter Property="BorderBrush" Value="#FFA1B8FF" />
+                                <Setter Property="Foreground" Value="#FFF" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="StandardButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#007ACC"/>
         <Setter Property="Foreground" Value="White"/>
