@@ -113,23 +113,23 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Margin="10">
-                <Label Content="Preis des Artikels in RP:" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <Label Content="RP Value:" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <TextBox VerticalContentAlignment="Center" x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
-                <TextBlock Text="Amount:" VerticalAlignment="Center"/>
+                <TextBlock Text="Amount of items:" VerticalAlignment="Center"/>
                 <TextBox VerticalContentAlignment="Center" Name="AmountTextBox" Width="60" Height="30"/>
                 <StackPanel Margin="0 0 10 0">
                     <Button Name="PlusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="+"/>
                     <Button Name="MinusButton" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="-"/>
                 </StackPanel>
-                <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Berechnen" Click="CalculateButton_Click"/>
+                <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Calculate" Click="CalculateButton_Click"/>
             </StackPanel>
-            <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}">
+            <DataGrid CanUserAddRows="False" FontSize="11" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="RP Bundle Preis" Binding="{Binding PriceBundles}"/>
-                    <DataGridTextColumn Header="RP Bundle Größe" Binding="{Binding BundleSize}" Width="125"/>
-                    <DataGridTextColumn Header="Kosten in € bei der Bundlegröße" Binding="{Binding EuroCost}" Width="*"/>
-                    <DataGridTextColumn Header="Bundles zum Kauf" Binding="{Binding NumBundles}" Width="125"/>
-                    <DataGridTextColumn Header="Betrag zu zahlen" Binding="{Binding GesGeld}" Width="125"/>
+                    <DataGridTextColumn Header="RP Bundle Price" Binding="{Binding PriceBundles}" Width="auto"/>
+                    <DataGridTextColumn Header="RP Bundle Size" Binding="{Binding BundleSize}" Width="auto"/>
+                    <DataGridTextColumn Header="Cost for items in that bundle size" Binding="{Binding EuroCost}" Width="auto"/>
+                    <DataGridTextColumn Header="Amount of Bundles to buy" Binding="{Binding NumBundles}" Width="auto"/>
+                    <DataGridTextColumn Header="Amount to Pay upfront" Binding="{Binding GesGeld}" Width="auto"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
