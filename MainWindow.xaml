@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:RP_to_Eur"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Title="RP Calculator" Height="400" Width="800">
 
@@ -28,8 +30,8 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid Background="#0073a4"
-              Grid.ColumnSpan="5"
+        <Grid Grid.ColumnSpan="5"
+              Background="#0073a4"
               MouseDown="Grid_MouseDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -44,7 +46,6 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Grid.Row="0" Source="/icon.ico"></Image>
 
             <Button x:Name="MinimierenButton"
                     Click="Click_Minimieren"
@@ -125,11 +126,41 @@
             </StackPanel>
             <DataGrid CanUserAddRows="False" FontSize="11" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="RP Bundle Price" Binding="{Binding PriceBundles}" Width="auto"/>
-                    <DataGridTextColumn Header="RP Bundle Size" Binding="{Binding BundleSize}" Width="auto"/>
-                    <DataGridTextColumn Header="Cost for items in that bundle size" Binding="{Binding EuroCost}" Width="auto"/>
-                    <DataGridTextColumn Header="Amount of Bundles to buy" Binding="{Binding NumBundles}" Width="auto"/>
-                    <DataGridTextColumn Header="Amount to Pay upfront" Binding="{Binding GesGeld}" Width="auto"/>
+                    <DataGridTextColumn Header="RP Bundle Price" Width="auto">
+                        <DataGridTextColumn.Binding>
+                            <Binding  Path="PriceBundles" >
+                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="RP Bundle Size" Width="auto">
+                        <DataGridTextColumn.Binding>
+                            <Binding  Path="BundleSize" >
+                                <Binding.StringFormat>{0} RP</Binding.StringFormat>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Cost for items in that bundle size" Width="auto">
+                        <DataGridTextColumn.Binding>
+                            <Binding  Path="EuroCost" >
+                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Amount of Bundles to buy" Width="auto">
+                        <DataGridTextColumn.Binding>
+                            <Binding  Path="NumBundles" >
+                                <Binding.StringFormat>{0}x</Binding.StringFormat>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Amount to Pay upfront" Width="auto">
+                        <DataGridTextColumn.Binding>
+                            <Binding  Path="GesGeld" >
+                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

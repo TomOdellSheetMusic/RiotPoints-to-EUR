@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,6 +23,7 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
         public MainWindow()
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             AmountTextBox.Text = "1";
             // Attach event handlers to the buttons
             PlusButton.Click += PlusButton_Click;
@@ -61,7 +63,7 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
                     bundleResult.EuroCost = double.Parse(bundleResult.EuroCost.ToString("N2"));
                     bundleResult.PriceBundles = double.Parse(bundleResult.PriceBundles.ToString("N2"));
                 }
-                ItemPriceTextBox.Text = itemPrice.ToString("0");
+                ItemPriceTextBox.Text = itemPrice.ToString("N2");
                 
             }
         }
