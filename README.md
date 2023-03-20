@@ -1,5 +1,5 @@
 # RiotPoints to EUR converter
-A simple .net program to convert the value of RP in its various bundles into euros. You can input any value of RiotPoints and get a table for every bundle
+A simple .net program to convert the value of RP in its various bundles into euros. You can input any value of RiotPoints and get a table for every bundle,
 how much you would have to pay upfront and what the best value is (although thats always just the most expensive pack)!
 
 ## Requirements
