@@ -128,8 +128,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RP Bundle Price" Width="auto">
                         <DataGridTextColumn.Binding>
-                            <Binding  Path="PriceBundles" >
-                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            <Binding  Path="PriceBundles" ConverterCulture="de-DE" StringFormat="{}{0:C}">
                             </Binding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
@@ -142,22 +141,20 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Cost for items in that bundle size" Width="auto">
                         <DataGridTextColumn.Binding>
-                            <Binding  Path="EuroCost" >
-                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            <Binding  Path="EuroCost" ConverterCulture="de-DE" StringFormat="{}{0:C}">
                             </Binding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Amount of Bundles to buy" Width="auto">
                         <DataGridTextColumn.Binding>
-                            <Binding  Path="NumBundles" >
+                            <Binding  Path="NumBundles">
                                 <Binding.StringFormat>{0}x</Binding.StringFormat>
                             </Binding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
                     <DataGridTextColumn Header="Amount to Pay upfront" Width="auto">
                         <DataGridTextColumn.Binding>
-                            <Binding  Path="GesGeld" >
-                                <Binding.StringFormat>{0} €</Binding.StringFormat>
+                            <Binding  Path="GesGeld" ConverterCulture="de-DE" StringFormat="{}{0:C}">
                             </Binding>
                         </DataGridTextColumn.Binding>
                     </DataGridTextColumn>

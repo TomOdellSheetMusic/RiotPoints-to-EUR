@@ -60,8 +60,10 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
                 foreach (BundleResult bundleResult in bundleResults)
                 {
                     bundleResult.BundleSize = int.Parse(bundleResult.BundleSize.ToString());
-                    bundleResult.EuroCost = double.Parse(bundleResult.EuroCost.ToString("N2"));
-                    bundleResult.PriceBundles = double.Parse(bundleResult.PriceBundles.ToString("N2"));
+                    bundleResult.EuroCost = double.Parse(bundleResult.EuroCost.ToString("N2", new CultureInfo("de-DE")));
+                    bundleResult.PriceBundles = double.Parse(bundleResult.PriceBundles.ToString("N2", new CultureInfo("de-DE")));
+                    bundleResult.GesGeld = double.Parse(bundleResult.GesGeld.ToString("N2", new CultureInfo("de-DE")));
+
                 }
                 ItemPriceTextBox.Text = itemPrice.ToString("N0");
                 
