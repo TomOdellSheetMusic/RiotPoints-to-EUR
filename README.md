@@ -6,4 +6,4 @@ how much you would have to pay upfront and what the best value is (although that
 [.net framework](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-6.0.407-windows-x64-installer) (tested with .net 5,6,7)
 
 ## Usage
-Either Build it yourself using your favourite IDE or just run the exe after installing the .net framwork
+Either build it yourself using your favourite IDE or just run the exe after installing the .net framwork
