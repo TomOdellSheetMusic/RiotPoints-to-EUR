@@ -56,14 +56,14 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
                 ResultsListView.ItemsSource = bundleResults;
                 
                 // Formatieren Sie die Anzeige der Zahlen auf zwei Nachkommastellen
-                ItemPriceTextBox.Text = itemPrice.ToString("N2");
+                ItemPriceTextBox.Text = itemPrice.ToString();
                 foreach (BundleResult bundleResult in bundleResults)
                 {
                     bundleResult.BundleSize = int.Parse(bundleResult.BundleSize.ToString());
                     bundleResult.EuroCost = double.Parse(bundleResult.EuroCost.ToString("N2"));
                     bundleResult.PriceBundles = double.Parse(bundleResult.PriceBundles.ToString("N2"));
                 }
-                ItemPriceTextBox.Text = itemPrice.ToString("N2");
+                ItemPriceTextBox.Text = itemPrice.ToString("N0");
                 
             }
         }
