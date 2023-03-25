@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace RP_to_Eur
 {
@@ -25,29 +26,17 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             AmountTextBox.Text = "1";
-            // Attach event handlers to the buttons
-            PlusButton.Click += PlusButton_Click;
-            MinusButton.Click += MinusButton_Click;
-
-            // Attach event handlers to the text boxes
-            ItemPriceTextBox.TextChanged += TextBox_TextChanged;
-            AmountTextBox.TextChanged += TextBox_TextChanged;
         }
-
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
-            TextBox_TextChanged(null, null);
-            double itemCountPrice = total;
-            // Überprüfen Sie, ob der Benutzer eine gültige Ganzzahl eingegeben hat
-            if (int.TryParse(ItemPriceTextBox.Text, out int itemPrice))
-            {
+            TextBox_TextChanged(itemPrice, null);
                 // Berechnen Sie den Preis in Euro und die Anzahl der Bundles für jede RP-Bundle-Größe
                 var bundleResults = new List<BundleResult>();
                 foreach (KeyValuePair<int, double> rpBundle in rpBundles)
                 {
-                    double euroCost = rpBundle.Value * itemCountPrice / rpBundle.Key;
+                    double euroCost = rpBundle.Value * currentItemPrice / rpBundle.Key;
                     double priceBundles = rpBundle.Value;
-                    int numBundles = (int)Math.Ceiling((double)itemCountPrice / rpBundle.Key);
+                    int numBundles = (int)Math.Ceiling((double)currentItemPrice / rpBundle.Key);
                     double gesGeld = rpBundle.Value * numBundles;
                     bundleResults.Add(new BundleResult(rpBundle.Key, priceBundles, euroCost,  numBundles, gesGeld));
                 }
@@ -56,7 +45,6 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
                 ResultsListView.ItemsSource = bundleResults;
                 
                 // Formatieren Sie die Anzeige der Zahlen auf zwei Nachkommastellen
-                ItemPriceTextBox.Text = itemPrice.ToString();
                 foreach (BundleResult bundleResult in bundleResults)
                 {
                     bundleResult.BundleSize = int.Parse(bundleResult.BundleSize.ToString());
@@ -65,30 +53,29 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
                     bundleResult.GesGeld = double.Parse(bundleResult.GesGeld.ToString("N2", new CultureInfo("de-DE")));
 
                 }
-                ItemPriceTextBox.Text = itemPrice.ToString("N0");
-                
-            }
+                ItemPriceTextBox.Text = itemPrice.ToString("N0");   
         }
+
         private double itemPrice = 0;
         private double amount = 0;
-        public double total = 0;
         public double currentItemPrice;
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void UpdateTextBoxValues()
         {
             // Try to parse the text in the text boxes as decimals
             double.TryParse(ItemPriceTextBox.Text, out itemPrice);
             double.TryParse(AmountTextBox.Text, out amount);
-        // Calculate the total and update the TotalTextBox
-            total = itemPrice * amount;
-            currentItemPrice = itemPrice;
+        }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateTextBoxValues();
+            // Calculate the total and update the itemPriceTextBox
+            currentItemPrice = itemPrice * amount;
         }
 
         private void PlusButton_Click(object sender, RoutedEventArgs e)
         {
-            // Try to parse the text in the text boxes as decimals
-            double.TryParse(ItemPriceTextBox.Text, out itemPrice);
-            double.TryParse(AmountTextBox.Text, out amount);
+            UpdateTextBoxValues();
             // Increment the amount and update the AmountTextBox
             amount++;
             AmountTextBox.Text = amount.ToString();
@@ -97,9 +84,7 @@ private readonly Dictionary<int, double> rpBundles = new Dictionary<int, double>
 
         private void MinusButton_Click(object sender, RoutedEventArgs e)
         {
-            // Try to parse the text in the text boxes as decimals
-            double.TryParse(ItemPriceTextBox.Text, out itemPrice);
-            double.TryParse(AmountTextBox.Text, out amount);
+            UpdateTextBoxValues();
             if (amount > 1)
             {
                 // Decrement the amount and update the AmountTextBox
