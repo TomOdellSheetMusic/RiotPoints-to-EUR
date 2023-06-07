@@ -3,7 +3,7 @@ A simple .net program to convert the value of RP in its various bundles into eur
 how much you would have to pay upfront and what the best value is! (although thats always just the most expensive pack)
 
 ## Requirements
-None for the standalone exe. Just download and run it from the Release tab. 
+None for the RPtoEUR.standalone.exe. Just download and run it from the Release tab. 
 
 ## Build it yourself
 [.net framework](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.15-windows-x64-installer) (tested with .net 5,6,7)
