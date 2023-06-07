@@ -124,7 +124,7 @@
                 </StackPanel>
                 <Button Style="{StaticResource StandardButtonStyle}" IsDefault="True" Content="Calculate" Click="CalculateButton_Click"/>
             </StackPanel>
-            <DataGrid Sorting="ResultsListView_Sorting" CanUserAddRows="False" FontSize="11" SelectionChanged="ResultsListView_SelectionChanged" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}" SelectedItem="{Binding SelectedBundleResult, Mode=TwoWay}">
+            <DataGrid CanUserAddRows="False" FontSize="11" AutoGenerateColumns="False" x:Name="ResultsListView" Grid.Row="1" Grid.Column="1" Style="{StaticResource ModernDataGrid}" ItemsSource="{Binding BundleResults}" SelectedItem="{Binding SelectedBundleResult, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="RP Bundle Price" Width="auto">
                         <DataGridTextColumn.Binding>
