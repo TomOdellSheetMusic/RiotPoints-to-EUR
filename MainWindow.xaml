@@ -116,7 +116,7 @@
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Label Content="RP Value:" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <TextBox VerticalContentAlignment="Center" x:Name="ItemPriceTextBox" Width="100" MaxHeight="30" Margin="0,0,10,0"/>
-                <TextBlock Text="Amount of items:" VerticalAlignment="Center"/>
+                <TextBlock Text="Quantity of items:" VerticalAlignment="Center"/>
                 <TextBox VerticalContentAlignment="Center" Name="AmountTextBox" Width="60" Height="30"/>
                 <StackPanel Margin="0 0 10 0">
                     <Button Click="PlusButton_Click" Width="30" Height="15" Style="{StaticResource StandardButtonStyle}" Content="+"/>
