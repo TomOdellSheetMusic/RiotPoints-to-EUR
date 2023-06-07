@@ -9,4 +9,4 @@ None for the RPtoEUR.standalone.exe. Just download and run it from the Release t
 [.net framework](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.15-windows-x64-installer) (tested with .net 5,6,7)
 
 ## Usage
-Run and input the amount of RP. The amount is just a multiplier so you dont have to calculate the price for multiple items.
+Run and input the amount of RP and item costs or the total RP with the amount set to 1. The amount is just a multiplier so you dont have to calculate the price for multiple items.
